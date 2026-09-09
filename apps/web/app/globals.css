@@ -4,29 +4,45 @@
   KAEW — gallery white.
   The artwork provides all the colour on the page. The interface provides none.
   No gradients. No glow. No neon. One accent, used only for interactive states.
+
+  Typography carries the weight instead. Three faces, loaded in app/fonts.ts:
+  a high-contrast serif for display, a Thai + Latin sans for everything else,
+  and eight CJK glyphs. What makes this read as a gallery is the size contrast
+  between the two — the display sizes are deliberately far above the body.
 */
 
 @theme {
   --color-paper: #ffffff;
-  --color-ink: #111110;
-  --color-muted: #74746f;
-  --color-rule: #e5e5e0;
+  --color-ink: #0f0f0e;
+  --color-muted: #6f6f6a;
+  --color-rule: #e4e4df;
   --color-wash: #f6f6f3;
-  --color-night: #0b0b0b;
+  --color-night: #0a0a0a;
 
-  /* Pulled from the artwork's jade, desaturated so it never competes with the image. */
+  /* Pulled from the artwork's jade, desaturated so it never competes with it. */
   --color-jade: #1f6b52;
   --color-jade-deep: #14493a;
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans Thai", sans-serif;
+  /* Composed from the next/font variables set on <html>. */
+  --font-body: var(--font-sans), var(--font-sans-thai), var(--font-cjk), system-ui,
+    -apple-system, "Segoe UI", sans-serif;
+  --font-title: var(--font-display), var(--font-cjk), "Iowan Old Style", Palatino,
+    Georgia, serif;
 
-  --text-display: clamp(2.75rem, 7vw, 5.5rem);
-  --text-title: clamp(1.875rem, 3.4vw, 2.75rem);
-  --text-lede: clamp(1.0625rem, 1.35vw, 1.25rem);
+  /*
+    One fluid scale. The gap between display and body is the point: a gallery
+    label card is small, quiet type under something large and still.
+  */
+  --text-display: clamp(3.25rem, 8.5vw, 7.25rem);
+  --text-title: clamp(2.25rem, 4.6vw, 3.75rem);
+  --text-heading: clamp(1.3125rem, 1.9vw, 1.625rem);
+  --text-lede: clamp(1.125rem, 1.45vw, 1.375rem);
+  --text-body: 1.0625rem;
+  --text-small: 0.9375rem;
+
+  --spacing-section: clamp(5rem, 11vw, 11rem);
 }
 
-/* Base element styles live in @layer base so utility classes always win. */
 @layer base {
   :root {
     color-scheme: light;
@@ -35,15 +51,17 @@
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
     background: var(--color-paper);
     color: var(--color-ink);
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    line-height: 1.6;
-    letter-spacing: -0.005em;
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: 1.65;
+    letter-spacing: -0.006em;
+    font-variant-numeric: lining-nums tabular-nums;
   }
 
   ::selection {
@@ -57,23 +75,70 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-jade);
-    outline-offset: 3px;
+    outline: 1px solid var(--color-jade);
+    outline-offset: 4px;
   }
 }
 
 @layer components {
-  /* Small caps label. The gallery card voice. */
+  /* The edition name at full size. One per page, at most. */
+  .display {
+    font-family: var(--font-title);
+    font-size: var(--text-display);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.028em;
+  }
+
+  /* Page titles. */
+  .title {
+    font-family: var(--font-title);
+    font-size: var(--text-title);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.022em;
+  }
+
+  /* Section headings inside a page. */
+  .heading {
+    font-family: var(--font-title);
+    font-size: var(--text-heading);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.014em;
+  }
+
+  /* Opening paragraph. */
+  .lede {
+    font-size: var(--text-lede);
+    line-height: 1.52;
+    letter-spacing: -0.012em;
+  }
+
+  /* The gallery label card voice: small, wide, quiet. */
   .eyebrow {
     font-size: 0.6875rem;
-    letter-spacing: 0.16em;
+    line-height: 1.4;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--color-muted);
     font-weight: 500;
   }
 
+  /* Prices and edition numbers set in the display serif. */
+  .figure-serif {
+    font-family: var(--font-title);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    font-variant-numeric: lining-nums;
+  }
+
   .measure {
-    max-width: 34rem;
+    max-width: 36rem;
+  }
+
+  .measure-wide {
+    max-width: 46rem;
   }
 
   .rule {
@@ -82,11 +147,21 @@
 
   .link-underline {
     border-bottom: 1px solid var(--color-rule);
-    transition: border-color 150ms ease, color 150ms ease;
+    padding-bottom: 0.15em;
+    transition: border-color 200ms ease, color 200ms ease;
   }
   .link-underline:hover {
     color: var(--color-jade);
     border-color: var(--color-jade);
+  }
+
+  .legal-body h2 {
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    font-weight: 500;
+    padding-top: 1.75rem;
   }
 }
 
@@ -96,16 +171,5 @@
   *::after {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
-  }
-}
-
-@layer components {
-  .legal-body h2 {
-    font-size: 0.6875rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-muted);
-    font-weight: 500;
-    padding-top: 1.5rem;
   }
 }

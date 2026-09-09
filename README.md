@@ -117,8 +117,41 @@ desaturated jade accent used solely for interactive states. No gradients, no glo
 no neon. One dark section on the edition page for the RGB proof shots, and it stops
 there.
 
-Typography is currently a system font stack. Licence and self-host a real face
-before launch — it is the one visible shortcut in the build.
+### Typography
+
+Three self-hosted faces, declared in `apps/web/app/fonts.ts`. No network request at
+build or runtime, nothing fetched from Google.
+
+| Face | Job | Size |
+|---|---|---|
+| Instrument Serif | Display — edition names, page titles, prices | 21 KB |
+| Anuphan (Latin) | Everything else | 35 KB |
+| Anuphan (Thai) | แก้ว, in the same voice as the English | 19 KB |
+| Noto Serif TC | Subset to the eight CJK characters the site uses | 3 KB |
+
+All four are SIL Open Font License, licences beside the files in `app/fonts/`.
+Total 78 KB, all four preloaded by `next/font`.
+
+The CJK file is the full 1.35 MB Noto Serif TC subset with `pyftsubset` down to
+`冷豔鋸關羽偃月刀` — the only CJK characters that appear on the site. Add a character
+to the content and it will fall back to a system serif until the subset is rebuilt:
+
+```bash
+pyftsubset NotoSerifTC.woff2 --text="冷豔鋸關羽偃月刀" --flavor=woff2 \
+  --layout-features='' --no-hinting --output-file=kaew-cjk-serif.woff2
+```
+
+Anuphan ships as separate Latin and Thai cuts of one variable font. They cannot be
+merged — fontTools cannot merge variable fonts — so they are declared separately and
+stacked in `--font-body`. The browser picks per glyph.
+
+If a commercial face is licensed later (Söhne, Suisse Int'l, GT America), it replaces
+one entry in `fonts.ts` and nothing else changes.
+
+The type scale lives in `globals.css` under `@theme`, with `.display`, `.title`,
+`.heading`, `.lede` and `.eyebrow` as the only type classes. The size gap between
+display and body is deliberate and is what makes the site read as a gallery rather
+than a shop — do not close it.
 
 ## Before launch
 

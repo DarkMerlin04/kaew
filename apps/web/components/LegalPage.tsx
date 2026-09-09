@@ -25,7 +25,7 @@ export function LegalPage({ title, children }: { title: string; children: ReactN
           </ul>
         </nav>
         <article>
-          <h1 className="text-title font-normal tracking-tight">{title}</h1>
+          <h1 className="title">{title}</h1>
           <div className="legal-body measure mt-8 space-y-5 leading-relaxed">
             {children}
           </div>

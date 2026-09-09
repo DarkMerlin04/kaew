@@ -17,26 +17,33 @@ export default function HomePage() {
         <PadMock variant="bleed" priority />
       </section>
 
-      <Container className="py-16">
+      <Container className="py-(--spacing-section)">
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="eyebrow">{editionLabel}</p>
-            <h1 className="mt-4 text-title font-normal tracking-tight">
+            <h1 className="display mt-6">
               {edition.name}
-              <span className="ml-4 align-middle text-lg text-muted">{edition.nameZh}</span>
+              <span className="ml-5 align-middle text-[0.26em] tracking-normal text-muted">
+                {edition.nameZh}
+              </span>
             </h1>
-            <p className="mt-3 text-muted">
-              {edition.artist.announced ? edition.artist.name : "Artist announced soon"} · {priceDisplay}
+            <p className="mt-8 flex flex-wrap items-baseline gap-x-5 gap-y-2 text-muted">
+              <span className="lede">
+                {edition.artist.announced ? edition.artist.name : "Artist announced soon"}
+              </span>
+              <span className="figure-serif text-[1.75rem] leading-none text-ink">
+                {priceDisplay}
+              </span>
             </p>
           </div>
-          <div className="flex flex-col items-start gap-4 md:items-end">
+          <div className="flex flex-col items-start gap-5 md:items-end">
             <Remaining />
             <BuyAction />
           </div>
         </div>
       </Container>
 
-      <Container className="grid gap-8 pb-8 md:grid-cols-3">
+      <Container className="grid gap-10 pb-8 md:grid-cols-3">
         <Figure caption="On a desk, daylight." pad={false}>
           <DeskScene />
         </Figure>
@@ -63,8 +70,8 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <Container className="py-20">
-        <div className="measure">
+      <Container className="py-(--spacing-section)">
+        <div className="measure-wide">
           <p className="text-lede leading-relaxed">
             KAEW is an editions label. Each edition is one artwork by one artist,
             printed under glass, made fifty times and never again. When it sells out

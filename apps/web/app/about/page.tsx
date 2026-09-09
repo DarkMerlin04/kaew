@@ -7,9 +7,9 @@ export const metadata: Metadata = { title: "About" };
 export default function AboutPage() {
   return (
     <Container className="py-24">
-      <h1 className="text-title font-normal tracking-tight">About</h1>
+      <h1 className="title">About</h1>
 
-      <div className="measure mt-10 space-y-6 text-lede leading-relaxed">
+      <div className="measure mt-10 space-y-6 lede">
         <p>
           KAEW is an editions label. We commission one artist, print their work under
           glass, make fifty, and stop. The edition is numbered and signed. When it is

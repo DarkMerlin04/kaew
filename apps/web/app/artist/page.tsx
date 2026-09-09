@@ -12,7 +12,7 @@ export default function ArtistPage() {
     return (
       <Container className="py-32">
         <p className="eyebrow">{editionLabel}</p>
-        <h1 className="mt-4 text-title font-normal tracking-tight">
+        <h1 className="title mt-4">
           The artist has not been announced.
         </h1>
         <div className="measure mt-8 space-y-5 leading-relaxed">
@@ -35,7 +35,7 @@ export default function ArtistPage() {
   return (
     <Container className="py-24">
       <p className="eyebrow">{editionLabel}</p>
-      <h1 className="mt-4 text-title font-normal tracking-tight">{edition.artist.name}</h1>
+      <h1 className="title mt-4">{edition.artist.name}</h1>
       <p className="mt-2 text-muted">{edition.artist.location}</p>
       <div className="mt-12 grid gap-16 md:grid-cols-[1fr_20rem]">
         <div className="measure space-y-5 leading-relaxed">

@@ -44,10 +44,13 @@ export default function EditionPage() {
         <div className="grid gap-16 md:grid-cols-[1fr_20rem]">
           <div>
             <p className="eyebrow">{editionLabel}</p>
-            <h1 className="mt-4 text-title font-normal tracking-tight">
-              {edition.name} <span className="text-muted">{edition.nameZh}</span>
+            <h1 className="display mt-6">
+              {edition.name}{" "}
+              <span className="align-middle text-[0.28em] tracking-normal text-muted">
+                {edition.nameZh}
+              </span>
             </h1>
-            <div className="measure mt-8 space-y-5 text-lede leading-relaxed">
+            <div className="measure mt-8 space-y-5 lede">
               {edition.statement.map((p) => (
                 <p key={p.slice(0, 24)}>{p}</p>
               ))}
@@ -59,7 +62,7 @@ export default function EditionPage() {
 
           {/* Buy column — price, count, guarantee, shipping, all in one place. */}
           <aside id="buy" className="h-fit border border-rule p-8 md:sticky md:top-24">
-            <p className="text-title font-normal">{priceDisplay}</p>
+            <p className="figure-serif text-title">{priceDisplay}</p>
             <Remaining className="mt-2" />
             <BuyAction className="mt-6 w-full text-center" />
             <dl className="mt-8 space-y-4 text-sm">
@@ -136,7 +139,7 @@ export default function EditionPage() {
       {/* Compatibility — stated openly, not buried */}
       <section className="border-y border-rule bg-wash">
         <Container className="py-24">
-          <h2 className="text-title font-normal tracking-tight">Will my mouse work?</h2>
+          <h2 className="title">Will my mouse work?</h2>
           <div className="measure mt-6 space-y-5 leading-relaxed">
             <p>{sensorNote}</p>
             <p>{liftOffNote}</p>

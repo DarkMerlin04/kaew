@@ -8,8 +8,8 @@ export const metadata: Metadata = { title: "Waitlist" };
 export default function WaitlistPage() {
   return (
     <Container className="py-32">
-      <h1 className="text-title font-normal tracking-tight">Waitlist</h1>
-      <div className="measure mt-8 space-y-5 text-lede leading-relaxed">
+      <h1 className="title">Waitlist</h1>
+      <div className="measure mt-8 space-y-5 lede">
         <p>
           Edition One is {edition.runSize} pieces. The waitlist gets forty-eight hours
           before the public drop, which is usually how a fifty-piece edition is decided.

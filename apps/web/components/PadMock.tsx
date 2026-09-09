@@ -21,7 +21,9 @@ export function PadMock({
 }) {
   if (variant === "bleed") {
     return (
-      <div className={`relative aspect-[490/430] w-full bg-night ${className}`}>
+      <div
+        className={`relative aspect-[490/430] max-h-[88svh] w-full bg-night ${className}`}
+      >
         <Image
           src={artwork}
           alt="Edition One — Guan Yu holding the Green Dragon Crescent Blade, jade green on black"

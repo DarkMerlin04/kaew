@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Care & Warranty" };
 export default function CarePage() {
   return (
     <Container className="py-24">
-      <h1 className="text-title font-normal tracking-tight">Care &amp; Warranty</h1>
+      <h1 className="title">Care &amp; Warranty</h1>
 
       <div className="mt-16 grid gap-16 md:grid-cols-2">
         <section>

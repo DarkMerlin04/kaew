@@ -45,8 +45,8 @@ const FIGURES = [
 export default function ObjectPage() {
   return (
     <Container className="py-24">
-      <h1 className="text-title font-normal tracking-tight">The Object</h1>
-      <p className="measure mt-6 text-lede leading-relaxed">
+      <h1 className="title">The Object</h1>
+      <p className="measure mt-6 lede">
         Six decisions, each made for a reason. None of them are new. They are simply
         the expensive version of each choice.
       </p>
@@ -56,7 +56,7 @@ export default function ObjectPage() {
           <section key={p.heading} className="grid gap-10 border-t border-rule pt-10 md:grid-cols-[1fr_1fr]">
             <div>
               <p className="eyebrow">{String(i + 1).padStart(2, "0")}</p>
-              <h2 className="mt-3 text-xl">{p.heading}</h2>
+              <h2 className="heading mt-3">{p.heading}</h2>
               <p className="measure mt-4 leading-relaxed text-muted">{p.body}</p>
             </div>
             {FIGURES[i]}

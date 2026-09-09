@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Legal" };
 export default function LegalIndex() {
   return (
     <Container className="py-24">
-      <h1 className="text-title font-normal tracking-tight">Legal</h1>
+      <h1 className="title">Legal</h1>
       <ul className="mt-10 max-w-xl">
         {legalNav.map((l) => (
           <li key={l.href} className="border-t border-rule">

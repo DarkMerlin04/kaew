@@ -14,7 +14,7 @@ export function BuyAction({ className = "" }: { className?: string }) {
     return (
       <Link
         href="/waitlist"
-        className={`inline-block border border-rule px-8 py-4 text-sm text-muted transition-colors hover:border-ink hover:text-ink ${className}`}
+        className={`inline-block border border-rule px-10 py-5 text-small text-muted transition-colors duration-200 hover:border-ink hover:text-ink ${className}`}
       >
         Sold out — join the waitlist for the next edition
       </Link>
@@ -25,7 +25,7 @@ export function BuyAction({ className = "" }: { className?: string }) {
     return (
       <Link
         href="/waitlist"
-        className={`inline-block bg-ink px-8 py-4 text-sm text-paper transition-colors hover:bg-jade-deep ${className}`}
+        className={`inline-block bg-ink px-10 py-5 text-small tracking-[0.02em] text-paper transition-colors duration-200 hover:bg-jade-deep ${className}`}
       >
         Join the waitlist
       </Link>
@@ -35,7 +35,7 @@ export function BuyAction({ className = "" }: { className?: string }) {
   return (
     <Link
       href="/edition#buy"
-      className={`inline-block bg-ink px-8 py-4 text-sm text-paper transition-colors hover:bg-jade-deep ${className}`}
+      className={`inline-block bg-ink px-10 py-5 text-small tracking-[0.02em] text-paper transition-colors duration-200 hover:bg-jade-deep ${className}`}
     >
       Buy — {priceDisplay}
     </Link>
