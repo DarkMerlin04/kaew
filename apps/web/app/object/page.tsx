@@ -34,12 +34,12 @@ const passages = [
 ];
 
 const FIGURES = [
-  <GlassTint key="tint" caption="The same colours, through each kind of glass." />,
-  <CrossSection key="under" ratio="3 / 2" caption="The picture goes on the underside." />,
+  <GlassTint ratio="16 / 9" key="tint" caption="The same colours, through each kind of glass." />,
+  <CrossSection key="under" ratio="4 / 3" caption="The picture goes on the underside." />,
   <ArtworkCrop key="white" ratio="3 / 2" zoom={3.4} focus={{ x: 0.15, y: 0.3 }} caption="White ink goes behind the fire and the frost. Nowhere else." />,
-  <EtchDiagram key="etch" caption="Why the etched surface kills glare and still tracks." />,
-  <TemperDiagram key="temper" caption="How each kind of glass fails." />,
-  <EdgeBaseDiagram key="edge" caption="The edge you rest on, and what is underneath." />,
+  <EtchDiagram ratio="16 / 9" key="etch" caption="Why the etched surface kills glare and still tracks." />,
+  <TemperDiagram ratio="16 / 9" key="temper" caption="How each kind of glass fails." />,
+  <EdgeBaseDiagram ratio="16 / 9" key="edge" caption="The edge you rest on, and what is underneath." />,
 ];
 
 export default function ObjectPage() {

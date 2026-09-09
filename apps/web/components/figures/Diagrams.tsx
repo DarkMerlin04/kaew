@@ -57,7 +57,7 @@ export function EtchDiagram({ caption, ratio = "3 / 2", className = "" }: { capt
           <line key={`${x}`} x1={660} y1={250} x2={x} y2={y} stroke="var(--color-jade)" strokeWidth={1.8} />
         ))}
         <text x={500} y={296} fontSize={LABEL} className="text-muted" fill="currentColor">
-          Micro-etched — scattered, and readable
+          Micro-etched — scattered
         </text>
       </svg>
     </Figure>
@@ -66,12 +66,14 @@ export function EtchDiagram({ caption, ratio = "3 / 2", className = "" }: { capt
 
 /** Annealed glass breaks into shards; tempered breaks into granules. */
 export function TemperDiagram({ caption, ratio = "3 / 2", className = "" }: { caption?: string; ratio?: string; className?: string }) {
-  const shards = [
-    "100,90 220,80 190,190 96,168",
-    "224,82 340,96 300,200 194,190",
-    "96,172 192,194 176,300 92,286",
-    "196,196 302,204 286,300 180,300",
-    "306,100 344,180 306,198",
+  /** Cracks radiating from one impact, into a few large pieces. */
+  const cracks = [
+    "230,190 168,96 150,80",
+    "230,190 300,120 344,80",
+    "230,190 344,168 356,150",
+    "230,190 286,286 302,320",
+    "230,190 150,268 116,320",
+    "230,190 104,206 92,212",
   ];
   const granules = [];
   for (let r = 0; r < 9; r++) {
@@ -79,7 +81,7 @@ export function TemperDiagram({ caption, ratio = "3 / 2", className = "" }: { ca
       granules.push(
         <rect
           key={`${r}-${c}`}
-          x={492 + c * 23 + ((r % 2) * 5)}
+          x={500 + c * 23 + ((r % 2) * 5)}
           y={86 + r * 24}
           width={19}
           height={20}
@@ -93,16 +95,17 @@ export function TemperDiagram({ caption, ratio = "3 / 2", className = "" }: { ca
   }
   return (
     <Figure caption={caption} ratio={ratio} className={className}>
-      <svg viewBox="40 40 820 340" className="w-full" role="img" aria-label="Annealed glass breaks into large shards; tempered glass breaks into small blunt granules.">
-        {shards.map((pts) => (
-          <polygon key={pts} points={pts} fill="none" stroke="var(--color-ink)" strokeWidth={1.8} />
+      <svg viewBox="40 40 820 356" className="w-full" role="img" aria-label="Annealed glass breaks into large shards; tempered glass breaks into small blunt granules.">
+        <rect x={92} y={80} width={264} height={240} fill="none" stroke="var(--color-ink)" strokeWidth={1.8} />
+        {cracks.map((pts) => (
+          <polyline key={pts} points={pts} fill="none" stroke="var(--color-ink)" strokeWidth={1.8} />
         ))}
-        <text x={92} y={344} fontSize={LABEL} className="text-muted" fill="currentColor">
+        <text x={92} y={358} fontSize={LABEL} className="text-muted" fill="currentColor">
           Annealed — shards
         </text>
 
         {granules}
-        <text x={492} y={344} fontSize={LABEL} className="text-muted" fill="currentColor">
+        <text x={500} y={358} fontSize={LABEL} className="text-muted" fill="currentColor">
           Tempered — blunt granules
         </text>
       </svg>
