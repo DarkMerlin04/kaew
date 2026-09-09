@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/Container";
-import { Plate } from "@/components/Plate";
+import { CrossSection } from "@/components/figures/CrossSection";
+import { GlassTint, EtchDiagram, TemperDiagram, EdgeBaseDiagram } from "@/components/figures/Diagrams";
+import { ArtworkCrop } from "@/components/figures/ArtworkCrop";
 
 export const metadata: Metadata = { title: "The Object" };
 
@@ -31,6 +33,15 @@ const passages = [
   },
 ];
 
+const FIGURES = [
+  <GlassTint key="tint" caption="The same colours, through each kind of glass." />,
+  <CrossSection key="under" ratio="3 / 2" caption="The picture goes on the underside." />,
+  <ArtworkCrop key="white" ratio="3 / 2" zoom={3.4} focus={{ x: 0.15, y: 0.3 }} caption="White ink goes behind the fire and the frost. Nowhere else." />,
+  <EtchDiagram key="etch" caption="Why the etched surface kills glare and still tracks." />,
+  <TemperDiagram key="temper" caption="How each kind of glass fails." />,
+  <EdgeBaseDiagram key="edge" caption="The edge you rest on, and what is underneath." />,
+];
+
 export default function ObjectPage() {
   return (
     <Container className="py-24">
@@ -48,7 +59,7 @@ export default function ObjectPage() {
               <h2 className="mt-3 text-xl">{p.heading}</h2>
               <p className="measure mt-4 leading-relaxed text-muted">{p.body}</p>
             </div>
-            <Plate label={`Process photograph — ${p.heading.toLowerCase()}.`} ratio="3 / 2" />
+            {FIGURES[i]}
           </section>
         ))}
       </div>

@@ -37,9 +37,11 @@ currently sits at `waitlist`, which is where the brief's launch sequence starts.
 
 ## What is deliberately not here
 
-- **No photography.** Nothing has been shot. Remaining image slots are `<Plate />`
-  components stating which shot belongs there, rather than stock images that would
-  set the wrong direction. Replace with `next/image` as photography arrives.
+- **No photography.** Nothing has been shot. Every image on the site is either a
+  real region of the artwork file, a drawing, or a CSS rendering — see
+  `apps/web/components/figures/`. Nothing is a photograph and nothing is stock.
+  The only remaining `<Plate />` placeholder is the artist portrait, which cannot be
+  invented and is unreachable until an artist is announced.
 - **The pad is a mock-up, not a photograph.** `apps/web/public/artwork/edition-one.jpg`
   is the AI direction art, extended with black to the 490 × 430 ratio.
   `<PadMock />` renders it as an object in CSS — the polished chamfer, the 5 mm
@@ -48,6 +50,23 @@ currently sits at `waitlist`, which is where the brief's launch sequence starts.
   before the shoot. Swap the component's internals for a real product photograph and
   no call site needs to change. The edition page carries a visible line saying the
   image is direction art.
+
+### The figures
+
+`apps/web/components/figures/` holds everything that stands in for photography:
+
+- `ArtworkCrop` — a real region of the artwork, enlarged. `zoom` is how many frame
+  widths the whole artwork spans; `focus` is the point of the artwork, as a fraction
+  of its own size, that lands in the middle of the frame.
+- `DeskScene` — a flat lay, the desk seen from directly above, in CSS. The frame is
+  1200 x 900 mm of desk and every object is placed and sized in real millimetres, so
+  pad, keyboard, mouse and mug are to scale with each other. `time="night"` for the
+  dark section. It is an illustration, not a photograph; delete it after the shoot.
+- `CrossSection`, `GlassTint`, `EtchDiagram`, `TemperDiagram`, `EdgeBaseDiagram` —
+  technical drawings. These earn their place permanently: they explain things a
+  photograph explains badly.
+- `EditionNumber`, `Certificate`, `SiliconeBase` — renderings of the object.
+  `07` is a sample number, not a reservation.
 
 `<ScaleDrawing />` is the exception to all of the above: it is a drawing, not a
 stand-in for a photograph, and it stays after the shoot. The SVG user unit is one

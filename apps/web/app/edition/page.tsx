@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/Container";
-import { Plate } from "@/components/Plate";
+import { Figure } from "@/components/figures/Figure";
+import { ArtworkCrop } from "@/components/figures/ArtworkCrop";
+import { CrossSection } from "@/components/figures/CrossSection";
+import { EditionNumber } from "@/components/figures/EditionNumber";
+import { Certificate } from "@/components/figures/Certificate";
+import { SiliconeBase } from "@/components/figures/SiliconeBase";
+import { DeskScene } from "@/components/figures/DeskScene";
 import { PadMock } from "@/components/PadMock";
 import { ScaleDrawing } from "@/components/ScaleDrawing";
 import { Remaining } from "@/components/Remaining";
@@ -89,10 +95,14 @@ export default function EditionPage() {
       </Container>
 
       <Container className="mt-16 grid gap-8 md:grid-cols-2">
-        <Plate label="Macro — ink under glass, showing depth." ratio="4 / 3" />
-        <Plate label="Edge profile — 5 mm, chamfered and polished." ratio="4 / 3" />
-        <Plate label="Numbering and certificate." ratio="4 / 3" />
-        <Plate label="Full-coverage silicone base, pad turned over." ratio="4 / 3" />
+        <ArtworkCrop
+          caption="Ink under glass. The picture is sealed beneath 5 mm."
+          zoom={4}
+          focus={{ x: 0.5, y: 0.28 }}
+        />
+        <CrossSection caption="Edge profile, cut through." />
+        <EditionNumber caption="Your number, in the quiet lower-right dark. Assigned at random." />
+        <SiliconeBase caption="Turned over: silicone across the whole base, not four feet." />
       </Container>
 
       {/* Specifications */}
@@ -111,13 +121,16 @@ export default function EditionPage() {
         <ScaleDrawing className="mt-8 max-w-3xl" />
 
         <h2 className="eyebrow mt-16">In the box</h2>
-        <ul className="mt-6 max-w-2xl space-y-3">
-          {edition.inTheBox.map((item) => (
-            <li key={item} className="border-t border-rule pt-3">
-              {item}
-            </li>
-          ))}
-        </ul>
+        <div className="mt-6 grid gap-12 md:grid-cols-[1fr_22rem]">
+          <ul className="space-y-3">
+            {edition.inTheBox.map((item) => (
+              <li key={item} className="border-t border-rule pt-3">
+                {item}
+              </li>
+            ))}
+          </ul>
+          <Certificate caption="Signed and numbered by the artist." />
+        </div>
       </Container>
 
       {/* Compatibility — stated openly, not buried */}
@@ -172,9 +185,21 @@ export default function EditionPage() {
             light instead of taking it on.
           </p>
           <div className="mt-10 grid gap-8 md:grid-cols-3">
-            <Plate label="RGB-lit desk, low light." tone="dark" />
-            <Plate label="Close, raking light across the etched surface." tone="dark" />
-            <Plate label="Whole desk at night." tone="dark" />
+            <Figure caption="The same desk, lights down." tone="dark" pad={false}>
+              <DeskScene time="night" />
+            </Figure>
+            <ArtworkCrop
+              caption="The green is under the glass, so it keeps its own colour."
+              tone="dark"
+              zoom={3.4}
+              focus={{ x: 0.14, y: 0.2 }}
+            />
+            <ArtworkCrop
+              caption="Where the picture falls away to black, the pad disappears."
+              tone="dark"
+              zoom={3}
+              focus={{ x: 0.74, y: 0.62 }}
+            />
           </div>
         </Container>
       </section>

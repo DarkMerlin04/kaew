@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { Container } from "@/components/Container";
-import { Plate } from "@/components/Plate";
+import { Figure } from "@/components/figures/Figure";
+import { DeskScene } from "@/components/figures/DeskScene";
+import { ArtworkCrop } from "@/components/figures/ArtworkCrop";
+import { CrossSection } from "@/components/figures/CrossSection";
 import { PadMock } from "@/components/PadMock";
 import { Remaining } from "@/components/Remaining";
 import { BuyAction } from "@/components/BuyAction";
@@ -34,9 +37,15 @@ export default function HomePage() {
       </Container>
 
       <Container className="grid gap-8 pb-8 md:grid-cols-3">
-        <Plate label="Desk, daylight. Light wood, one mouse, one keyboard, a mug." />
-        <Plate label="Hand at rest in the lower-right dark of the artwork." />
-        <Plate label="Macro — print detail seen through 5 mm of glass." />
+        <Figure caption="On a desk, daylight." pad={false}>
+          <DeskScene />
+        </Figure>
+        <ArtworkCrop
+          caption="Print detail, seen through the glass."
+          zoom={3.2}
+          focus={{ x: 0.17, y: 0.24 }}
+        />
+        <CrossSection caption="Sealed under 5 mm of low-iron glass." />
       </Container>
 
       {/* The object itself, once the picture has done its work. */}
