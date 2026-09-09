@@ -1,6 +1,7 @@
 import Image from "next/image";
 import artwork from "@/public/artwork/edition-one.jpg";
 import { Figure } from "./Figure";
+import { IMAGE_QUALITY } from "@/lib/image-policy";
 
 /**
  * A real region of the artwork, enlarged.
@@ -43,7 +44,7 @@ export function ArtworkCrop({
             src={artwork}
             alt=""
             fill
-            quality={95}
+            quality={IMAGE_QUALITY.artwork}
             sizes="(max-width: 768px) 200vw, 1400px"
             className="object-cover"
           />

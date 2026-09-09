@@ -23,6 +23,34 @@ npm run build
 review. (Metadata routes `robots.ts` / `sitemap.ts` are not compatible with static
 export — move them aside temporarily if you use it.)
 
+## Images
+
+`next/image` does the work; no image library was added on top of it. Blur
+placeholders come free from the static import, so `plaiceholder` and friends are
+unnecessary. `sharp` is a dependency because Next.js strongly recommends it for
+self-hosted `next start` and requires it in standalone mode.
+
+**Never write a `quality` number in a component.** `apps/web/lib/image-policy.ts`
+is the single source of truth, and `next.config.ts` builds its `images.qualities`
+allowlist from the same object:
+
+```ts
+IMAGE_QUALITY.standard  // 75 — interface-scale renderings
+IMAGE_QUALITY.artwork   // 90 — the artwork itself, at any size
+```
+
+Next.js validates the `quality` prop against that allowlist and throws at render
+time on a value outside it, so writing the number in both places is how you get a
+page that builds clean and then 500s. Adding a tier costs cache storage — Next
+caches every (size, format, quality) combination separately — so add one only with
+a reason.
+
+Output is AVIF with a WebP fallback. The Next.js docs recommend WebP alone for most
+sites, since AVIF costs about 50% more encode time and doubles the cache footprint.
+This site is the exception: a handful of images, one of them a full-bleed artwork
+that has to stay fast on mobile, so paying encode time once for roughly 20% smaller
+files is worth it here.
+
 ## Where the content lives
 
 Everything a non-developer would want to change is in `apps/web/content/`:

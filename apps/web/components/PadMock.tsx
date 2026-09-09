@@ -1,5 +1,6 @@
 import Image from "next/image";
 import artwork from "@/public/artwork/edition-one.jpg";
+import { IMAGE_QUALITY } from "@/lib/image-policy";
 
 /**
  * Renders the pad as an object rather than as a picture.
@@ -26,7 +27,7 @@ export function PadMock({
           alt="Edition One — Guan Yu holding the Green Dragon Crescent Blade, jade green on black"
           fill
           priority={priority}
-          quality={90}
+          quality={IMAGE_QUALITY.artwork}
           sizes="100vw"
           className="object-cover"
           placeholder="blur"
@@ -49,7 +50,7 @@ export function PadMock({
         alt="Edition One — Guan Yu holding the Green Dragon Crescent Blade, jade green on black"
         fill
         priority={priority}
-        quality={90}
+        quality={IMAGE_QUALITY.artwork}
         sizes="(max-width: 768px) 100vw, 900px"
         className="object-cover"
         placeholder="blur"

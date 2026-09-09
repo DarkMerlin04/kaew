@@ -1,5 +1,6 @@
 import Image from "next/image";
 import artwork from "@/public/artwork/edition-one.jpg";
+import { IMAGE_QUALITY } from "@/lib/image-policy";
 
 /**
  * A flat lay — the desk seen from directly above — rendered entirely in CSS.
@@ -189,7 +190,7 @@ export function DeskScene({
             boxShadow: `${shadow(20, night ? 0.7 : 0.38)}, inset 0 0 0 1px rgba(255,255,255,0.12)`,
           }}
         >
-          <Image src={artwork} alt="" fill quality={92} sizes="800px" className="object-cover" />
+          <Image src={artwork} alt="" fill quality={IMAGE_QUALITY.standard} sizes="800px" className="object-cover" />
           {/* Daylight across the etched surface, coming from the upper right */}
           <div
             aria-hidden
