@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/Container";
 import { Plate } from "@/components/Plate";
 import { PadMock } from "@/components/PadMock";
+import { ScaleDrawing } from "@/components/ScaleDrawing";
 import { Remaining } from "@/components/Remaining";
 import { BuyAction } from "@/components/BuyAction";
 import { edition, editionLabel, priceDisplay } from "@/content/edition";
@@ -105,6 +106,9 @@ export default function EditionPage() {
             </div>
           ))}
         </dl>
+
+        <h2 className="eyebrow mt-16">On a desk</h2>
+        <ScaleDrawing className="mt-8 max-w-3xl" />
 
         <h2 className="eyebrow mt-16">In the box</h2>
         <ul className="mt-6 max-w-2xl space-y-3">

@@ -48,6 +48,13 @@ currently sits at `waitlist`, which is where the brief's launch sequence starts.
   before the shoot. Swap the component's internals for a real product photograph and
   no call site needs to change. The edition page carries a visible line saying the
   image is direction art.
+
+`<ScaleDrawing />` is the exception to all of the above: it is a drawing, not a
+stand-in for a photograph, and it stays after the shoot. The SVG user unit is one
+millimetre, so every rectangle in it is the real dimension of the thing it
+represents and the plan cannot drift out of scale — change a number and the drawing
+follows. It answers a question photography answers badly: how much of the desk this
+takes up.
 - **No artist.** `edition.artist.announced` is `false`, so `/artist` says so plainly
   instead of inventing a name.
 - **No backend.** Waitlist and checkout are not wired. The waitlist form validates
