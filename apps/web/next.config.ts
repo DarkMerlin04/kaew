@@ -1,8 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Set EXPORT=1 to emit a static snapshot into out/ for visual review.
-  ...(process.env.EXPORT ? { output: "export" as const, images: { unoptimized: true } } : {}),
   images: {
     formats: ["image/avif", "image/webp"],
     // Artwork quality is the product: allow large, high-quality renditions.
@@ -20,6 +18,8 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // Set EXPORT=1 to emit a static snapshot into out/ for visual review.
+  ...(process.env.EXPORT ? { output: "export" as const, images: { unoptimized: true } } : {}),
 };
 
 export default nextConfig;

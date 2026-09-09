@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { Plate } from "@/components/Plate";
+import { PadMock } from "@/components/PadMock";
 import { Remaining } from "@/components/Remaining";
 import { BuyAction } from "@/components/BuyAction";
 import { edition, editionLabel, priceDisplay } from "@/content/edition";
@@ -30,12 +31,7 @@ export default function EditionPage() {
 
   return (
     <>
-      <Plate
-        label="Edition One artwork, full width."
-        ratio="490 / 320"
-        tone="dark"
-        className="border-x-0 border-t-0"
-      />
+      <PadMock variant="bleed" priority />
 
       <Container className="py-16">
         <div className="grid gap-16 md:grid-cols-[1fr_20rem]">
@@ -84,7 +80,14 @@ export default function EditionPage() {
         </div>
       </Container>
 
-      <Container className="grid gap-8 md:grid-cols-2">
+      <Container>
+        <PadMock variant="flat" />
+        <p className="mt-4 text-sm text-muted">
+          Direction art. The finished edition is drawn by the commissioned artist.
+        </p>
+      </Container>
+
+      <Container className="mt-16 grid gap-8 md:grid-cols-2">
         <Plate label="Macro — ink under glass, showing depth." ratio="4 / 3" />
         <Plate label="Edge profile — 5 mm, chamfered and polished." ratio="4 / 3" />
         <Plate label="Numbering and certificate." ratio="4 / 3" />

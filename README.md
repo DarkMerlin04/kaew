@@ -37,9 +37,17 @@ currently sits at `waitlist`, which is where the brief's launch sequence starts.
 
 ## What is deliberately not here
 
-- **No photography.** Nothing has been shot. Every image slot is a `<Plate />`
-  stating which shot belongs there, rather than a stock image that would set the
-  wrong direction. Replace with `next/image` as photography arrives.
+- **No photography.** Nothing has been shot. Remaining image slots are `<Plate />`
+  components stating which shot belongs there, rather than stock images that would
+  set the wrong direction. Replace with `next/image` as photography arrives.
+- **The pad is a mock-up, not a photograph.** `apps/web/public/artwork/edition-one.jpg`
+  is the AI direction art, extended with black to the 490 × 430 ratio.
+  `<PadMock />` renders it as an object in CSS — the polished chamfer, the 5 mm
+  edge and the contact shadow are all `box-shadow`, and the `angled` variant is a
+  `rotateX` transform, not a real perspective. It exists so the layout can be judged
+  before the shoot. Swap the component's internals for a real product photograph and
+  no call site needs to change. The edition page carries a visible line saying the
+  image is direction art.
 - **No artist.** `edition.artist.announced` is `false`, so `/artist` says so plainly
   instead of inventing a name.
 - **No backend.** Waitlist and checkout are not wired. The waitlist form validates

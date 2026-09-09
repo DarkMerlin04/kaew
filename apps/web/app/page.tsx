@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { Plate } from "@/components/Plate";
+import { PadMock } from "@/components/PadMock";
 import { Remaining } from "@/components/Remaining";
 import { BuyAction } from "@/components/BuyAction";
 import { edition, editionLabel, priceDisplay } from "@/content/edition";
@@ -10,12 +11,7 @@ export default function HomePage() {
     <>
       {/* Full-bleed artwork. This is the only colour on the page. */}
       <section>
-        <Plate
-          label="Full-bleed artwork — Edition One, at full width. The picture carries the page."
-          ratio="490 / 300"
-          tone="dark"
-          className="border-x-0 border-t-0"
-        />
+        <PadMock variant="bleed" priority />
       </section>
 
       <Container className="py-16">
@@ -42,6 +38,21 @@ export default function HomePage() {
         <Plate label="Hand at rest in the lower-right dark of the artwork." />
         <Plate label="Macro — print detail seen through 5 mm of glass." />
       </Container>
+
+      {/* The object itself, once the picture has done its work. */}
+      <section className="mt-16 border-y border-rule bg-wash">
+        <Container className="py-20">
+          <div className="mx-auto max-w-[52rem]">
+            <PadMock variant="angled" />
+            <div className="mt-10 flex flex-wrap items-baseline justify-between gap-4">
+              <p className="eyebrow">The object</p>
+              <p className="text-muted">
+                490 × 430 mm · 5 mm low-iron tempered glass · 2.5 kg
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
 
       <Container className="py-20">
         <div className="measure">
