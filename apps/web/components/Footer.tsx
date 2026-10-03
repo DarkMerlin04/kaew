@@ -49,7 +49,9 @@ export function Footer() {
         <p>
           {site.name} — {site.nameThai}, Thai for glass. Bangkok.
         </p>
-        <p>© {new Date().getFullYear()}</p>
+        <p>
+          © {new Date().getFullYear()} · Produced by {site.producer}.
+        </p>
       </Container>
     </footer>
   );

@@ -1,0 +1,59 @@
+# Builds the site as static HTML and publishes it to GitHub Pages.
+#
+# One-time setup in the repository: Settings → Pages → Source: "GitHub Actions".
+# After that, every push to the default branch redeploys the site.
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time; a newer push waits rather than cancelling a live one.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      # Gives the sub-path (/<repo>) and full URL Pages will serve from.
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - run: npm ci
+
+      - run: npm run build
+        env:
+          EXPORT: "1"
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
+          NEXT_TELEMETRY_DISABLED: "1"
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: apps/web/out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

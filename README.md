@@ -19,9 +19,19 @@ npm run dev        # http://localhost:3000
 npm run build
 ```
 
-`EXPORT=1 npm run build` emits a static snapshot into `apps/web/out/` for visual
-review. (Metadata routes `robots.ts` / `sitemap.ts` are not compatible with static
-export — move them aside temporarily if you use it.)
+`EXPORT=1 npm run build` emits the whole site as static HTML into `apps/web/out/`.
+Add `BASE_PATH=/kaew` when it will be served from a sub-path rather than the root of
+a domain.
+
+## Hosting
+
+GitHub Pages, deployed by `.github/workflows/pages.yml` on every push to the
+default branch. The workflow runs the static export with the repository's own
+sub-path and URL, so renaming the repository needs no code change. One-time setup
+in the repository: Settings → Pages → Source: **GitHub Actions**.
+
+Waitlist and checkout are not wired yet, so nothing is lost by hosting statically.
+When the backend lands, the site moves to a host that runs `next start`.
 
 ## Images
 

@@ -1,6 +1,21 @@
 import type { NextConfig } from "next";
 import { IMAGE_QUALITIES } from "./lib/image-policy";
 
+/**
+ * Static export — for GitHub Pages, or any host that only serves files.
+ *
+ * EXPORT=1 emits the whole site as plain HTML into out/. BASE_PATH is the
+ * sub-path the site is served from: "/kaew" for https://<user>.github.io/kaew/,
+ * empty when the site sits at the root of its domain. The workflow in
+ * .github/workflows/pages.yml sets both, so nothing here names a repository.
+ *
+ * A file host has no image optimizer, so an exported site serves the original
+ * image files. Every image on the site is a static import, which is why
+ * basePath reaches them without help; a string `src` would need it by hand.
+ */
+const isExport = Boolean(process.env.EXPORT);
+const basePath = process.env.BASE_PATH ?? "";
+
 const nextConfig: NextConfig = {
   images: {
     /**
@@ -25,22 +40,32 @@ const nextConfig: NextConfig = {
      * so a changed artwork gets a new URL and this can be safely long.
      */
     minimumCacheTTL: 31_536_000,
+
+    /** No optimizer on a static host. */
+    unoptimized: isExport,
   },
 
-  async headers() {
-    return [
-      {
-        source: "/:path*",
-        headers: [
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-        ],
-      },
-    ];
-  },
-
-  // Set EXPORT=1 to emit a static snapshot into out/ for visual review.
-  ...(process.env.EXPORT ? { output: "export" as const, images: { unoptimized: true } } : {}),
+  ...(isExport
+    ? {
+        output: "export" as const,
+        basePath,
+        /** /edition/ → edition/index.html, which every static host resolves. */
+        trailingSlash: true,
+      }
+    : {
+        /** Response headers need a server; a static host sets its own. */
+        async headers() {
+          return [
+            {
+              source: "/:path*",
+              headers: [
+                { key: "X-Content-Type-Options", value: "nosniff" },
+                { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+              ],
+            },
+          ];
+        },
+      }),
 };
 
 export default nextConfig;
