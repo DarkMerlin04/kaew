@@ -50,7 +50,7 @@ export function Footer() {
           {site.name} — {site.nameThai}, Thai for glass. Bangkok.
         </p>
         <p>
-          © {new Date().getFullYear()} · Produced by {site.producer}.
+          © {new Date().getFullYear()} · {site.credit}
         </p>
       </Container>
     </footer>
