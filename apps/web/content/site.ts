@@ -6,8 +6,8 @@ export const site = {
     "KAEW is an editions label. Each edition is one artwork by one artist, produced as fifty numbered glass pads, sold once.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   /** Who made the site. The credit line closes the footer; the name goes in page metadata. */
-  designer: "AJ",
-  credit: "Designed by AJ, Coding with Claude.",
+  designer: "Raweeroj Thokaeo",
+  credit: "UX/UI Design by Raweeroj Thokaeo, Coding with Claude.",
 };
 
 export const nav = [
